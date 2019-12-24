@@ -18,7 +18,7 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: IaC
-        path: IaC
+        path: ${{ env.OUTPUT_PATH }}
 
   # provision infrastructure in Azure
   provisionInfra:
@@ -30,6 +30,7 @@ jobs:
       uses: actions/download-artifact@master
       with:
         name: IaC
+        path: ${{ env.OUTPUT_PATH }}
 
     - name: look for ps1 file
       run: |
