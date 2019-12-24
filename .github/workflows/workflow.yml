@@ -35,7 +35,7 @@ jobs:
       run: |
         ls '%GITHUB_WORKSPACE%\IaC\AzCLI'
 
-    - name: provision webapp and db infrastructure in azure
+    - name: provision virtual machine in azure
       env:
         SERVICE_PRINCIPAL: http://SarahDeployPrincipal
         SERVICE_PRINCIPAL_TENANT: 72f988bf-86f1-41af-91ab-2d7cd011db47
