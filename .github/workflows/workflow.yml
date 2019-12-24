@@ -56,7 +56,6 @@ jobs:
         -resourceGroupName %RESOURCE_GROUP% 
         -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
         -serverName %SERVER_NAME% 
-        -dbLocation %DB_LOCATION% 
         -adminLogin %ADMIN_LOGIN% 
         -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
 
