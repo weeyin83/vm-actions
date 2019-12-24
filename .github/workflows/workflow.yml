@@ -36,8 +36,7 @@ jobs:
 
     - name: look for ps1 file
       run: |
-        ls 'env:
-  OUTPUT_PATH: '${{ github.workspace }}\IaC\AzCLI'
+        ls '${{ github.workspace }}\IaC\AzCLI'
 
     - name: provision virtual machine in azure
       env:
