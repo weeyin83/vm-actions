@@ -11,7 +11,7 @@ jobs:
     steps:
     # checkout code from repo
     - name: checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v1
 
     # upload IaC folder
     - name: upload IaC
@@ -33,7 +33,6 @@ jobs:
 
     - name: look for ps1 file
       run: |
-        ls '%GITHUB_WORKSPACE%'
         ls '\IaC\AzCLI'
 
     - name: provision virtual machine in azure
@@ -41,9 +40,9 @@ jobs:
         SERVICE_PRINCIPAL: http://SarahDeployPrincipal
         SERVICE_PRINCIPAL_TENANT: 72f988bf-86f1-41af-91ab-2d7cd011db47
         AZURE_SUBSCRIPTION_NAME: "Microsoft Azure Internal Consumption"
-        RESOURCE_GROUP: mercuryhealthcore-rg
+        RESOURCE_GROUP: rg-githubitpro
         RESOURCE_GROUP_REGION: southcentralus
-        SERVER_NAME: mercuryhealthcoredbserverbeta
+        SERVER_NAME: gihtubactions
         ADMIN_LOGIN: sarah
         ENVIRONMENT: "[beta]"
       run: >
