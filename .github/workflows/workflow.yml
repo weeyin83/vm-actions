@@ -33,7 +33,7 @@ jobs:
 
     - name: look for ps1 file
       run: |
-        ls '\IaC\AzCLI'
+        ls '%GITHUB_WORKSPACE%\IaC\AzCLI'
 
     - name: provision webapp and db infrastructure in azure
       env:
@@ -43,14 +43,10 @@ jobs:
         RESOURCE_GROUP: mercuryhealthcore-rg
         RESOURCE_GROUP_REGION: southcentralus
         SERVER_NAME: mercuryhealthcoredbserverbeta
-        DB_LOCATION: southcentralus
-        ADMIN_LOGIN: abel
-        START_IP: 0.0.0.0
-        END_IP: 0.0.0.0
-        DB_NAME: amercuryhealthcoredbbeta
+        ADMIN_LOGIN: sarah
         ENVIRONMENT: "[beta]"
       run: >
-        powershell -command "& '%GITHUB_WORKSPACE%\IaC\AzCLI\provisionWebAndDB.ps1'" 
+        powershell -command "& '%GITHUB_WORKSPACE%\IaC\AzCLI\vmcreation.ps1'" 
         -servicePrincipal %SERVICE_PRINCIPAL% 
         -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
         -servicePrincipalTenantId %SERVICE_PRINCIPAL_TENANT% 
@@ -60,9 +56,5 @@ jobs:
         -serverName %SERVER_NAME% 
         -dbLocation %DB_LOCATION% 
         -adminLogin %ADMIN_LOGIN% 
-        -adminPassword ${{ secrets.DB_PASSWORD }} 
-        -startip %START_IP% 
-        -endip %END_IP% 
-        -dbName %DB_NAME% 
-        -webAppName %WEB_APP_NAME% 
+        -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
         -environment %ENVIRONMENT%
