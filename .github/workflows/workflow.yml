@@ -44,7 +44,6 @@ jobs:
         RESOURCE_GROUP_REGION: southcentralus
         SERVER_NAME: gihtubactions
         ADMIN_LOGIN: sarah
-        ENVIRONMENT: "[beta]"
       run: >
         powershell -command "& '%GITHUB_WORKSPACE%\IaC\AzCLI\vmcreation.ps1'" 
         -servicePrincipal %SERVICE_PRINCIPAL% 
@@ -57,4 +56,4 @@ jobs:
         -dbLocation %DB_LOCATION% 
         -adminLogin %ADMIN_LOGIN% 
         -adminPassword ${{ secrets.ADMIN_PASSWORD }} 
-        -environment %ENVIRONMENT%
+

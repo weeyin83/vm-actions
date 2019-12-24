@@ -36,27 +36,7 @@ param(
 
     [Parameter(Mandatory = $True)]  
     [string]
-    $adminPassword,
-    
-    [Parameter(Mandatory = $True)]  
-    [string]
-    $startip,
-
-    [Parameter(Mandatory = $True)]  
-    [string]
-    $endip,
-
-    [Parameter(Mandatory = $True)]  
-    [string]
-    $dbName,
-
-    [Parameter(Mandatory = $True)]  
-    [string]
-    $webAppName,
-
-    [Parameter(Mandatory = $True)]  
-    [string]
-    $environment
+    $adminPassword
 )
 
 
