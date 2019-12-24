@@ -1,16 +1,68 @@
-# .github/workflows/sql-deploy.yml
+name: GitHub for IT Pro CI/CD Pipeline
+
 on: [push]
 
 jobs:
-  build:
+      
+  # publish IaC as build artifact
+  uploadIaC:
+    runs-on: windows-latest
+
+    steps:
+    # checkout code from repo
+    - name: checkout repo
+      uses: actions/checkout@v1
+
+    # upload IaC folder
+    - name: upload IaC
+      uses: actions/upload-artifact@master
+      with:
+        name: IaC
+        path: IaC
+
+  # provision infrastructure in Azure
+  provisionInfra:
+    needs: uploadIaC
     runs-on: windows-latest
     steps:
-    - uses: actions/checkout@v1
-    - uses: azure/actions/login@v1
+    # download IaC artifact
+    - name: download IaC
+      uses: actions/download-artifact@master
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-    - uses: Azure/sql-action@v1
-      with:
-        server-name: sarah-github-server
-        connection-string: ${{ secrets.AZURE_SQL_CONNECTION_STRING }}
-        dacpac-package: './Database.dacpac'
+        name: IaC
+
+    - name: look for ps1 file
+      run: |
+        ls '\IaC\AzCLI'
+
+    - name: provision webapp and db infrastructure in azure
+      env:
+        SERVICE_PRINCIPAL: http://SarahDeployPrincipal
+        SERVICE_PRINCIPAL_TENANT: 72f988bf-86f1-41af-91ab-2d7cd011db47
+        AZURE_SUBSCRIPTION_NAME: "Microsoft Azure Internal Consumption"
+        RESOURCE_GROUP: mercuryhealthcore-rg
+        RESOURCE_GROUP_REGION: southcentralus
+        SERVER_NAME: mercuryhealthcoredbserverbeta
+        DB_LOCATION: southcentralus
+        ADMIN_LOGIN: abel
+        START_IP: 0.0.0.0
+        END_IP: 0.0.0.0
+        DB_NAME: amercuryhealthcoredbbeta
+        ENVIRONMENT: "[beta]"
+      run: >
+        powershell -command "& '%GITHUB_WORKSPACE%\IaC\AzCLI\provisionWebAndDB.ps1'" 
+        -servicePrincipal %SERVICE_PRINCIPAL% 
+        -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
+        -servicePrincipalTenantId %SERVICE_PRINCIPAL_TENANT% 
+        -azureSubscriptionName %AZURE_SUBSCRIPTION_NAME% 
+        -resourceGroupName %RESOURCE_GROUP% 
+        -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
+        -serverName %SERVER_NAME% 
+        -dbLocation %DB_LOCATION% 
+        -adminLogin %ADMIN_LOGIN% 
+        -adminPassword ${{ secrets.DB_PASSWORD }} 
+        -startip %START_IP% 
+        -endip %END_IP% 
+        -dbName %DB_NAME% 
+        -webAppName %WEB_APP_NAME% 
+        -environment %ENVIRONMENT%
