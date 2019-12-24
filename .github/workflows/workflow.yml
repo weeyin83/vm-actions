@@ -33,6 +33,7 @@ jobs:
 
     - name: look for ps1 file
       run: |
+        ls '%GITHUB_WORKSPACE%'
         ls '\IaC\AzCLI'
 
     - name: provision virtual machine in azure
