@@ -48,7 +48,7 @@ jobs:
         SERVER_NAME: gihtubactions
         ADMIN_LOGIN: sarah
       run: >
-        powershell -command "& '%GITHUB_WORKSPACE%\IaC\AzCLI\vmcreation.ps1'" 
+        powershell -command "& '${{ env.OUTPUT_PATH }}\IaC\AzCLI\vmcreation.ps1'" 
         -servicePrincipal %SERVICE_PRINCIPAL% 
         -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
         -servicePrincipalTenantId %SERVICE_PRINCIPAL_TENANT% 
