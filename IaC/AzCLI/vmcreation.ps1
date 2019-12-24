@@ -63,7 +63,7 @@ Write-Output ""
 #endregion
 
     #region Create Resource Group
-    # # This creates the resource group used to house all of Mercury Health
+    # # This creates the resource group used to house the VM
     # #
     Write-Output "Creating resource group $resourceGroupName in region $resourceGroupNameRegion..."
     az group create `
