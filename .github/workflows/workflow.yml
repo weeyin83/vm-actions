@@ -40,19 +40,16 @@ jobs:
 
     - name: provision virtual machine in azure
       env:
-        SERVICE_PRINCIPAL: http://SarahDeployPrincipal
-        SERVICE_PRINCIPAL_TENANT: 72f988bf-86f1-41af-91ab-2d7cd011db47
-        AZURE_SUBSCRIPTION_NAME: "Microsoft Azure Internal Consumption"
         RESOURCE_GROUP: rg-githubitpro
         RESOURCE_GROUP_REGION: southcentralus
         SERVER_NAME: gihtubactions
         ADMIN_LOGIN: sarah
       run: >
         powershell -command "& '${{ env.OUTPUT_PATH }}\IaC\AzCLI\vmcreation.ps1'" 
-        -servicePrincipal %SERVICE_PRINCIPAL% 
+        -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
         -servicePrincipalSecret ${{ secrets.SERVICE_PRINCIPAL_SECRET }} 
-        -servicePrincipalTenantId %SERVICE_PRINCIPAL_TENANT% 
-        -azureSubscriptionName %AZURE_SUBSCRIPTION_NAME% 
+        -servicePrincipalTenantId ${{ secrets.SERVICE_PRINCIPAL_TENANTID }} 
+        -azureSubscriptionName ${{ secrets.AZURE_SUBSCRIPTION_ID }}
         -resourceGroupName %RESOURCE_GROUP% 
         -resourceGroupNameRegion %RESOURCE_GROUP_REGION% 
         -serverName %SERVER_NAME% 
