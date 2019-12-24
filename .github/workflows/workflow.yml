@@ -11,7 +11,7 @@ jobs:
     steps:
     # checkout code from repo
     - name: checkout repo
-      uses: actions/checkout@v1
+      uses: actions/checkout@v2
 
     # upload IaC folder
     - name: upload IaC
@@ -33,7 +33,6 @@ jobs:
 
     - name: look for ps1 file
       run: |
-        ls
         ls '%GITHUB_WORKSPACE%\IaC\AzCLI'
 
     - name: provision virtual machine in azure
