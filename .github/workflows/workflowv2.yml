@@ -16,10 +16,6 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
-  # provision infrastructure in Azure
-  provisionInfra:
-        path: ${{ env.OUTPUT_PATH }}
-
     - name: look for ps1 file
       run: |
         ls '${{ env.OUTPUT_PATH }}\IaC\AzCLI'
