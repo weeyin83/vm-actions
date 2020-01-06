@@ -16,23 +16,8 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v1
 
-    # upload IaC folder
-    - name: upload IaC
-      uses: actions/upload-artifact@master
-      with:
-        name: IaC
-        path: ${{ env.OUTPUT_PATH }}
-
   # provision infrastructure in Azure
   provisionInfra:
-    needs: uploadIaC
-    runs-on: windows-latest
-    steps:
-    # download IaC artifact
-    - name: download IaC
-      uses: actions/download-artifact@master
-      with:
-        name: IaC
         path: ${{ env.OUTPUT_PATH }}
 
     - name: look for ps1 file
