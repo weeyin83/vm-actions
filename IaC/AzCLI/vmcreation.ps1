@@ -1,32 +1,5 @@
-﻿﻿<#
-.SYNOPSIS
-Deploys a virtual machine in Azure using GitHub Actions
-
-.DESCRIPTION 
-This script will deploy a virtual machine within Azure utilising GitHub Actions as the deployment technology. 
-
-.OUTPUTS
-
-
-.NOTES
-Written by: Sarah Lean
-
-Find me on:
-
-* My Blog:	http://www.techielass.com
-* Twitter:	https://twitter.com/techielass
-* LinkedIn:	http://uk.linkedin.com/in/sazlean
-* GitHub:   https://www.github.com/weeyin83
-
-
-.EXAMPLE
-
-
-Change Log
-V1.00 06/01/2020 - Initial version
-#>
-
-
+﻿# This IaC script provisions a VM within Azure
+#
 [CmdletBinding()]
 param(
     [Parameter(Mandatory = $True)]
