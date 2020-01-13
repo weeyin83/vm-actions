@@ -22,7 +22,7 @@ jobs:
 
     - name: provision virtual machine in azure
       env:
-        RESOURCE_GROUP: rg-githubitpro
+        RESOURCE_GROUP: rg-demo
         RESOURCE_GROUP_REGION: ukwest
         SERVER_NAME: gihtubactions
         ADMIN_LOGIN: sarah
