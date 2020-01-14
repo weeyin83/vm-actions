@@ -80,7 +80,7 @@ try {
     az vm create  `
         --resource-group $resourceGroupName `
         --name $serverName `
-        --image win2016datacenter `
+        --image win2019datacenter `
         --admin-username $adminLogin `
         --admin-password $adminPassword
     }
