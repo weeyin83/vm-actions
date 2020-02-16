@@ -23,9 +23,9 @@ jobs:
     - name: provision virtual machine in azure
       env:
         RESOURCE_GROUP: rg-githubdeploy
-        RESOURCE_GROUP_REGION: uksouth
+        RESOURCE_GROUP_REGION: westeurope
         SERVER_NAME: githubactions
-        ADMIN_LOGIN: sarah
+        ADMIN_LOGIN: luha
       run: >
         powershell -command "& '${{ env.OUTPUT_PATH }}\IaC\AzCLI\vmcreation.ps1'" 
         -servicePrincipal ${{ secrets.SERVICE_PRINCIPAL_APPID }}
