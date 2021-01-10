@@ -23,7 +23,7 @@ jobs:
     - name: provision virtual machine in azure
       env:
         RESOURCE_GROUP: rg-githubdeploy
-        RESOURCE_GROUP_REGION: uksouth
+        RESOURCE_GROUP_REGION: ukwest
         SERVER_NAME: githubactions
         ADMIN_LOGIN: sarah
       run: >
